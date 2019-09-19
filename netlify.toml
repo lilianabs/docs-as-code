@@ -1,3 +1,3 @@
 [build]
-  publish = "build/en/latest"
+  publish = "build/html"
   command = "make html"
