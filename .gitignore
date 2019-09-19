@@ -1,4 +1,2 @@
 !/.gitignore
 .idea
-docs/build/*
-docs/Makefile
