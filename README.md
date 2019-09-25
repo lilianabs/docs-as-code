@@ -109,6 +109,9 @@ To add new content to the documentation site:
 5.Go to `http://0.0.0.0:8000/` to see the documentation site.
 
 >Note: Run command `make clean` to clean the project.
+
+[⇧ back to top](#table-of-contents)
+
 ## Tests
 
 We run a few scripts to check missing links and other aspects of the documentation.
