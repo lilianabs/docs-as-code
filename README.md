@@ -9,8 +9,11 @@ This is an implementation of the Docs like Code approach to write and publish do
 - [Local Installation](#local-installation)
   - [Prerequisites](#prerequisites)
   - [Install](#local-installation)   
+  - [Add New Content to the Documentation Site](#add-new-content-to-the-documentation-site)
 - [Tests](#tests)
-- [Deployment](#deployment)
+  - [Missing Links](#missing-links)
+- [Continuous Deployment](#continuous-deployment)
+  - [Netlify](#netlify)
  
 
 ## Introduction
@@ -40,52 +43,112 @@ We adopt Continuous Integration (CI) and Continuous Development (CD) to deliver 
 
 Instructions to set this project up on you local machine.
 
+
 [⇧ back to top](#table-of-contents)
 
 ### Prerequisites
 
-Things you need to install on your system before you follow the rest of the
-instructions
+You need to install [Anaconda](https://www.anaconda.com/distribution/) and [Pycharm](https://www.jetbrains.com/help/pycharm/installation-guide.html).
+
 
 [⇧ back to top](#table-of-contents)
 
-### Install <service name>
+### Install 
+To set this project up on your local machine:
 
-This can be more specific if required. You can break it up into several
-sections as needed. For example:
+1.Clone this repo:
+   ```
+    git clone https://github.com/lilianabs/docs-as-code.git
+   ```
 
-- Setting up the database.
-- Starting the backend service.
-- Configuring the environment variables.
+2.Create a *conda* `docs-as-code` environment:
+
+   ```
+    conda create --name docs-as-code python=3.7 -y
+   ```
+
+3.Activate the `docs-as-code` environment:
+
+   ```
+     conda activate docs-as-code
+   ``` 
+
+4.Install the project dependencies:
+
+   ```      
+      while read requirement; do conda install --yes $requirement; done < requirements.txt
+   ```
+5.Open the project in Pycharm with `docs-as-code` interpreter.
 
 [⇧ back to top](#table-of-contents)
 
+### Add New Content to the Documentation Site
+
+To add new content to the documentation site:
+
+1.Add the new content as an *.rst* file to the `source` directory.
+
+2.Build the documentation site:
+
+   ```
+    make html
+   ```
+   >Note: Execute the above command in the *docs-as-code* directory.
+
+3.Got to the `html` directory:
+
+   ```
+    cd build/html
+   ```
+
+4.Start a Python local server to see the documentation site:
+
+   ```
+    python -m http.server
+   ```
+5.Go to `http://0.0.0.0:8000/` to see the documentation site.
+
+>Note: Run command `make clean` to clean the project.
 ## Tests
 
-Explain how the automated tests work
+We run a few scripts to check missing links and other aspects of the documentation.
 
 [⇧ back to top](#table-of-contents)
 
-### End to End Tests
+### Missing Links
 
-Explain these tests
+To check for missing links, run the script:
 
-[⇧ back to top](#table-of-contents)
-
-### Linting
-
-Explain these tests
+```
+bash ./scripts/linkcheck.sh
+```
 
 [⇧ back to top](#table-of-contents)
 
-### Security Tests
 
-Explain these tests
 
-[⇧ back to top](#table-of-contents)
+## Continuous Deployment
 
-## Deployment
+We deploy this site to [Netlify](www.netlify.com).
 
-Information necessary to understand how to deploy this code.
+### Netlify
+
+1.Fork this repository.
+
+2.Go to [Netlify](www.netlify.com).
+
+3.Get a free account.
+
+4.Click **New Site from Git**.
+
+5.Click **GitHub**.
+
+6.Click **Authorize Netlify**.
+
+7.Enter your GitHub password.
+
+8.Choose your forked repository.
+
+9.Click **Deploy site**.
 
 [⇧ back to top](#table-of-contents)
